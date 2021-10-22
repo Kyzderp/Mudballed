@@ -150,6 +150,9 @@ local function UpdateAllTallies()
 
     UpdateButtons(MudballedTargetTally, Mud.savedOptions.targetTally, Mud.sessionTargetTally, Mud.savedOptions.targetDisplay, "Attackers")
     MudballedTargetTally:SetHidden(not Mud.savedOptions.targetDisplay.show)
+
+    MudballedSourceTally:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, Mud.savedOptions.sourceDisplay.x, Mud.savedOptions.sourceDisplay.y)
+    MudballedTargetTally:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, Mud.savedOptions.targetDisplay.x, Mud.savedOptions.targetDisplay.y)
 end
 Mud.UpdateAllTallies = UpdateAllTallies
 
@@ -164,7 +167,5 @@ function Mud.OnButtonClicked(buttonType, isSource)
 end
 
 function Mud.InitializeDisplay()
-    MudballedSourceTally:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, Mud.savedOptions.sourceDisplay.x, Mud.savedOptions.sourceDisplay.y)
-    MudballedTargetTally:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, Mud.savedOptions.targetDisplay.x, Mud.savedOptions.targetDisplay.y)
     UpdateAllTallies()
 end

@@ -58,6 +58,9 @@ end
 function Mud.SavePosition()
     Mud.savedOptions.sourceDisplay.x = MudballedSourceTally:GetLeft()
     Mud.savedOptions.sourceDisplay.y = MudballedSourceTally:GetTop()
+
+    Mud.savedOptions.targetDisplay.x = MudballedTargetTally:GetLeft()
+    Mud.savedOptions.targetDisplay.y = MudballedTargetTally:GetTop()
 end
 
 ---------------------------------------------------------------------

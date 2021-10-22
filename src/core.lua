@@ -12,6 +12,7 @@ local BALL_TYPE = {
 }
 Mud.BALL_TYPE = BALL_TYPE
 
+-- murderous strike |H1:collectible:1385|h|h
 local BALL_DATA = {
     [BALL_TYPE.MUDBALL] = {
         id = 86774, -- Mudball

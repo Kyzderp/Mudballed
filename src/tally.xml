@@ -1,12 +1,12 @@
 <GuiXml>
     <Controls>
+        <Label name="MudballedDummyText" font="ZoFontGame" hidden="true"></Label>
         <TopLevelControl name="MudballedContainer" mouseEnabled="false" movable="false">
             <OnInitialized>
                 HUD_SCENE:AddFragment(ZO_SimpleSceneFragment:New(self))
                 HUD_UI_SCENE:AddFragment(ZO_SimpleSceneFragment:New(self))
             </OnInitialized>
             <Controls>
-                <Label name="MudballedDummyText" font="ZoFontGame" hidden="true"></Label>
 <!-- ======================================================================================================================= -->
                 <Control name="MudballedSourceTally" clampedToScreen="true" mouseEnabled="true" movable="true" hidden="false">
                     <Dimensions x="220" y="100"/>
@@ -71,7 +71,7 @@
                                     <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT" offsetX="4" offsetY="10"/>
                                     <Dimensions x="36" y="36"/>
                                     <OnClicked>
-                                        Mud.savedOptions.sourceDisplay.show = false
+                                        Mudballed.savedOptions.sourceDisplay.show = false
                                         MudballedSourceTally:SetHidden(true)
                                     </OnClicked>
                                     <OnMouseEnter>
@@ -182,7 +182,7 @@
                                     <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOMRIGHT" offsetX="4" offsetY="10"/>
                                     <Dimensions x="36" y="36"/>
                                     <OnClicked>
-                                        Mud.savedOptions.targetDisplay.show = false
+                                        Mudballed.savedOptions.targetDisplay.show = false
                                         MudballedTargetTally:SetHidden(true)
                                     </OnClicked>
                                     <OnMouseEnter>

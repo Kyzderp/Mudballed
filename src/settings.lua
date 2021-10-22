@@ -54,6 +54,7 @@ function Mud.CreateSettingsMenu()
                 Mud.savedOptions.capLines = value
                 MudballedContainer:SetHidden(false)
                 MudballedSourceTally:SetHidden(false)
+                MudballedTargetTally:SetHidden(false)
                 Mud.UpdateAllTallies()
             end,
         },
