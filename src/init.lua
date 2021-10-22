@@ -5,6 +5,7 @@ Mud.version = "0.0.0"
 
 local defaultOptions = {
     chat = true,
+    capLines = 10,
     sourceTally = { -- Tally for user hitting other players
         mudball = {},
         snowball = {},
@@ -16,6 +17,26 @@ local defaultOptions = {
         snowball = {},
         pie = {},
         blossom = {},
+    },
+    sourceDisplay = {
+        x = 500,
+        y = 0,
+        mudball = true,
+        snowball = true,
+        pie = true,
+        blossom = true,
+        all = false,
+        show = true,
+    },
+    targetDisplay = {
+        x = 500,
+        y = 200,
+        mudball = true,
+        snowball = true,
+        pie = true,
+        blossom = true,
+        all = false,
+        show = true,
     },
 }
 Mud.unlocked = false
@@ -35,11 +56,8 @@ end
 ---------------------------------------------------------------------
 -- Save position after moving
 function Mud.SavePosition()
-    -- local x, y = SynCoolContainer:GetCenter()
-    -- local oX, oY = GuiRoot:GetCenter()
-    -- -- x is the offset from the center
-    -- SynCool.savedOptions.display.x = x - oX
-    -- SynCool.savedOptions.display.y = y - oY
+    Mud.savedOptions.sourceDisplay.x = MudballedSourceTally:GetLeft()
+    Mud.savedOptions.sourceDisplay.y = MudballedSourceTally:GetTop()
 end
 
 ---------------------------------------------------------------------
@@ -73,11 +91,7 @@ local function Initialize()
     Mud.CreateSettingsMenu()
 
     Mud.InitializeCore()
-
-    -- SynCoolContainer:SetAnchor(CENTER, GuiRoot, CENTER, SynCool.savedOptions.display.x, SynCool.savedOptions.display.y)
-
-
-    -- SLASH_COMMANDS["/mud"] = 
+    Mud.InitializeDisplay()
 
     EVENT_MANAGER:RegisterForEvent(Mud.name .. "PlayerActivated", EVENT_PLAYER_ACTIVATED, OnPlayerActivated)
 end

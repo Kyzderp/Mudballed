@@ -69,17 +69,13 @@ local function OnCommand(argString, mainCmd, isSource, tally, sessionTally)
     end
 
     if (length == 0) then
-        Mud.msg(MakeHeader(isSource, "mudball", true))
-        CHAT_SYSTEM:AddMessage("|cFFFFFF" .. FormatTally(sessionTally.mudball, "mudball") .. "|r")
-        Mud.msg("To see other tally types: |cFFFFFF" .. mainCmd .. " <mudball||snowball||pie||blossom>|cAAAAAA. Append |cFFFFFFall|cAAAAAA to see all-time.")
-    elseif (length == 1 and args[1] == "session") then
-        Mud.msg(MakeHeader(isSource, "mudball", true))
-        CHAT_SYSTEM:AddMessage("|cFFFFFF" .. FormatTally(sessionTally.mudball, "mudball") .. "|r")
-        Mud.msg("To see other tally types: |cFFFFFF" .. mainCmd .. " <mudball||snowball||pie||blossom>|cAAAAAA. Append |cFFFFFFall|cAAAAAA to see all-time.")
-    elseif (length == 1 and args[1] == "all") then
-        Mud.msg(MakeHeader(isSource, "mudball", false))
-        CHAT_SYSTEM:AddMessage("|cFFFFFF" .. FormatTally(tally.mudball, "mudball") .. "|r")
-        Mud.msg("To see other tally types: |cFFFFFF" .. mainCmd .. " <mudball||snowball||pie||blossom>|cAAAAAA. Append |cFFFFFFsession|cAAAAAA to see only this session.")
+        if (isSource) then
+            Mud.savedOptions.sourceDisplay.show = not Mud.savedOptions.sourceDisplay.show
+            Mud.UpdateAllTallies()
+        else
+            Mud.savedOptions.targetDisplay.show = not Mud.savedOptions.targetDisplay.show
+            Mud.UpdateAllTallies()
+        end
     elseif (length == 1 or (length == 2 and args[2] == "session")) then
         local subTally = sessionTally[args[1]]
         if (subTally) then

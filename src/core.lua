@@ -10,6 +10,7 @@ local BALL_TYPE = {
     PIE = 3,
     BLOSSOM = 4,
 }
+Mud.BALL_TYPE = BALL_TYPE
 
 local BALL_DATA = {
     [BALL_TYPE.MUDBALL] = {

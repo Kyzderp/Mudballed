@@ -10,3 +10,5 @@ src/init.lua
 src/core.lua
 src/command.lua
 src/settings.lua
+src/display.lua
+src/tally.xml
