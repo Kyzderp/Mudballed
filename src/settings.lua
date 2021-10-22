@@ -25,7 +25,7 @@ function Mud.CreateSettingsMenu()
         {
             type = "checkbox",
             name = "Show mudballed victims tally",
-            tooltip = "Show a UI tally of players you have mudballed, snowballed, pied, or covered in cherry blossoms. This can also be toggled with |c88FF88/mudballed|r",
+            tooltip = "Show a tally panel of players you have mudballed, snowballed, pied, or covered in cherry blossoms. This can also be toggled with |c88FF88/mudballed|r",
             default = true,
             getFunc = function() return Mud.savedOptions.sourceDisplay.show end,
             setFunc = function(value) Mud.savedOptions.sourceDisplay.show = value end,
@@ -34,7 +34,7 @@ function Mud.CreateSettingsMenu()
         {
             type = "checkbox",
             name = "Show mudball attackers",
-            tooltip = "Show a UI tally of players who have hit you with mudballs, snowballs, pies, or cherry blossoms.  This can also be toggled with |c88FF88/mudball|r",
+            tooltip = "Show a tally panel of players who have hit you with mudballs, snowballs, pies, or cherry blossoms.  This can also be toggled with |c88FF88/mudball|r",
             default = true,
             getFunc = function() return Mud.savedOptions.targetDisplay.show end,
             setFunc = function(value) Mud.savedOptions.targetDisplay.show = value end,
@@ -63,4 +63,8 @@ function Mud.CreateSettingsMenu()
     LAM:RegisterOptionControls("MudballedOptions", optionsData)
 
     CALLBACK_MANAGER:RegisterCallback("LAM-PanelClosed", Mud.InitializeDisplay)
+end
+
+function Mud.OpenSettingsMenu()
+    LibAddonMenu2:OpenToPanel(Mud.addonPanel)
 end

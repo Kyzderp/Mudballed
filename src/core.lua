@@ -102,6 +102,8 @@ local function OnBalled(ballType, sourceName, sourceType, targetName, targetType
     if (Mud.savedOptions.chat) then
         Mud.msg(string.format(format, otherPlayer, tally[otherPlayer]))
     end
+
+    Mud.UpdateAllTallies()
 end
 
 

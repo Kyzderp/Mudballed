@@ -19,8 +19,8 @@ local defaultOptions = {
         blossom = {},
     },
     sourceDisplay = {
-        x = 500,
-        y = 0,
+        x = 0,
+        y = 500,
         mudball = true,
         snowball = true,
         pie = true,
@@ -29,8 +29,8 @@ local defaultOptions = {
         show = true,
     },
     targetDisplay = {
-        x = 500,
-        y = 200,
+        x = 220,
+        y = 500,
         mudball = true,
         snowball = true,
         pie = true,
