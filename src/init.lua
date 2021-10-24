@@ -1,7 +1,7 @@
 Mudballed = Mudballed or {}
 local Mud = Mudballed
 Mud.name = "Mudballed"
-Mud.version = "0.0.0"
+Mud.version = "1.0.0"
 
 local defaultOptions = {
     chat = true,
@@ -11,12 +11,14 @@ local defaultOptions = {
         snowball = {},
         pie = {},
         blossom = {},
+        crow = {},
     },
     targetTally = { -- Tally for getting hit by other players
         mudball = {},
         snowball = {},
         pie = {},
         blossom = {},
+        crow = {},
     },
     sourceDisplay = {
         x = 0,
@@ -25,6 +27,7 @@ local defaultOptions = {
         snowball = true,
         pie = true,
         blossom = true,
+        crow = true,
         all = false,
         show = true,
     },
@@ -35,6 +38,7 @@ local defaultOptions = {
         snowball = true,
         pie = true,
         blossom = true,
+        crow = true,
         all = false,
         show = true,
     },
@@ -58,9 +62,13 @@ end
 function Mud.SavePosition()
     Mud.savedOptions.sourceDisplay.x = MudballedSourceTally:GetLeft()
     Mud.savedOptions.sourceDisplay.y = MudballedSourceTally:GetTop()
+    MudballedSourceTally:ClearAnchors()
+    MudballedSourceTally:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, Mud.savedOptions.sourceDisplay.x, Mud.savedOptions.sourceDisplay.y)
 
     Mud.savedOptions.targetDisplay.x = MudballedTargetTally:GetLeft()
     Mud.savedOptions.targetDisplay.y = MudballedTargetTally:GetTop()
+    MudballedTargetTally:ClearAnchors()
+    MudballedTargetTally:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, Mud.savedOptions.targetDisplay.x, Mud.savedOptions.targetDisplay.y)
 end
 
 ---------------------------------------------------------------------
@@ -83,12 +91,14 @@ local function Initialize()
         snowball = {},
         pie = {},
         blossom = {},
+        crow = {},
     }
     Mud.sessionTargetTally = {
         mudball = {},
         snowball = {},
         pie = {},
         blossom = {},
+        crow = {},
     }
 
     Mud.CreateSettingsMenu()

@@ -21,8 +21,17 @@
                             <Anchor point="TOP" relativeTo="$(parent)" relativePoint="TOP"/>
                             <Controls>
                                 <Backdrop name="$(parent)Backdrop" centerColor="75000000" edgeColor="00000000" hidden="false"><AnchorFill/></Backdrop>
+                                <Texture name="$(parent)Pie" textureFile="/esoui/art/icons/event_jestersfestival_revelerypie.dds" tier="HIGH" mouseEnabled="true" movable="false">
+                                    <Anchor point="BOTTOM" relativeTo="$(parent)" relativePoint="BOTTOM"/>
+                                    <Dimensions x="20" y="20"/>
+                                    <OnMouseUp>Mudballed.OnButtonClicked("pie", true)</OnMouseUp>
+                                    <OnMouseEnter>
+                                        ZO_Tooltips_ShowTextTooltip(self, LEFT, "Toggle whether to include |H1:item:147300:2:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h in the tally")
+                                    </OnMouseEnter>
+                                    <OnMouseExit>ZO_Tooltips_HideTextTooltip()</OnMouseExit>
+                                </Texture>
                                 <Texture name="$(parent)Snowball" textureFile="/esoui/art/icons/collectible_memento_snowball.dds" tier="HIGH" mouseEnabled="true" movable="false">
-                                    <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOM"/>
+                                    <Anchor point="RIGHT" relativeTo="$(parent)Pie" relativePoint="LEFT"/>
                                     <Dimensions x="20" y="20"/>
                                     <OnMouseUp>Mudballed.OnButtonClicked("snowball", true)</OnMouseUp>
                                     <OnMouseEnter>
@@ -39,21 +48,21 @@
                                     </OnMouseEnter>
                                     <OnMouseExit>ZO_Tooltips_HideTextTooltip()</OnMouseExit>
                                 </Texture>
-                                <Texture name="$(parent)Pie" textureFile="/esoui/art/icons/event_jestersfestival_revelerypie.dds" tier="HIGH" mouseEnabled="true" movable="false">
-                                    <Anchor point="LEFT" relativeTo="$(parent)Snowball" relativePoint="RIGHT"/>
-                                    <Dimensions x="20" y="20"/>
-                                    <OnMouseUp>Mudballed.OnButtonClicked("pie", true)</OnMouseUp>
-                                    <OnMouseEnter>
-                                        ZO_Tooltips_ShowTextTooltip(self, LEFT, "Toggle whether to include |H1:item:147300:2:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h in the tally")
-                                    </OnMouseEnter>
-                                    <OnMouseExit>ZO_Tooltips_HideTextTooltip()</OnMouseExit>
-                                </Texture>
                                 <Texture name="$(parent)Blossom" textureFile="/art/fx/texture/cherryblossomground_01.dds" tier="HIGH" mouseEnabled="true" movable="false">
                                     <Anchor point="LEFT" relativeTo="$(parent)Pie" relativePoint="RIGHT"/>
                                     <Dimensions x="20" y="20"/>
                                     <OnMouseUp>Mudballed.OnButtonClicked("blossom", true)</OnMouseUp>
                                     <OnMouseEnter>
                                         ZO_Tooltips_ShowTextTooltip(self, LEFT, "Toggle whether to include |H1:collectible:1108|h|h in the tally")
+                                    </OnMouseEnter>
+                                    <OnMouseExit>ZO_Tooltips_HideTextTooltip()</OnMouseExit>
+                                </Texture>
+                                <Texture name="$(parent)Crow" textureFile="/esoui/art/icons/achievement_update16_016.dds" tier="HIGH" mouseEnabled="true" movable="false">
+                                    <Anchor point="LEFT" relativeTo="$(parent)Blossom" relativePoint="RIGHT"/>
+                                    <Dimensions x="20" y="20"/>
+                                    <OnMouseUp>Mudballed.OnButtonClicked("crow", true)</OnMouseUp>
+                                    <OnMouseEnter>
+                                        ZO_Tooltips_ShowTextTooltip(self, LEFT, "Toggle whether to include |H1:collectible:1385|h|h in the tally")
                                     </OnMouseEnter>
                                     <OnMouseExit>ZO_Tooltips_HideTextTooltip()</OnMouseExit>
                                 </Texture>
@@ -132,8 +141,17 @@
                             <Anchor point="TOP" relativeTo="$(parent)" relativePoint="TOP"/>
                             <Controls>
                                 <Backdrop name="$(parent)Backdrop" centerColor="75000000" edgeColor="00000000" hidden="false"><AnchorFill/></Backdrop>
+                                <Texture name="$(parent)Pie" textureFile="/esoui/art/icons/event_jestersfestival_revelerypie.dds" tier="HIGH" mouseEnabled="true" movable="false">
+                                    <Anchor point="BOTTOM" relativeTo="$(parent)" relativePoint="BOTTOM"/>
+                                    <Dimensions x="20" y="20"/>
+                                    <OnMouseUp>Mudballed.OnButtonClicked("pie", false)</OnMouseUp>
+                                    <OnMouseEnter>
+                                        ZO_Tooltips_ShowTextTooltip(self, LEFT, "Toggle whether to include |H1:item:147300:2:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h in the tally")
+                                    </OnMouseEnter>
+                                    <OnMouseExit>ZO_Tooltips_HideTextTooltip()</OnMouseExit>
+                                </Texture>
                                 <Texture name="$(parent)Snowball" textureFile="/esoui/art/icons/collectible_memento_snowball.dds" tier="HIGH" mouseEnabled="true" movable="false">
-                                    <Anchor point="BOTTOMRIGHT" relativeTo="$(parent)" relativePoint="BOTTOM"/>
+                                    <Anchor point="RIGHT" relativeTo="$(parent)Pie" relativePoint="LEFT"/>
                                     <Dimensions x="20" y="20"/>
                                     <OnMouseUp>Mudballed.OnButtonClicked("snowball", false)</OnMouseUp>
                                     <OnMouseEnter>
@@ -150,21 +168,21 @@
                                     </OnMouseEnter>
                                     <OnMouseExit>ZO_Tooltips_HideTextTooltip()</OnMouseExit>
                                 </Texture>
-                                <Texture name="$(parent)Pie" textureFile="/esoui/art/icons/event_jestersfestival_revelerypie.dds" tier="HIGH" mouseEnabled="true" movable="false">
-                                    <Anchor point="LEFT" relativeTo="$(parent)Snowball" relativePoint="RIGHT"/>
-                                    <Dimensions x="20" y="20"/>
-                                    <OnMouseUp>Mudballed.OnButtonClicked("pie", false)</OnMouseUp>
-                                    <OnMouseEnter>
-                                        ZO_Tooltips_ShowTextTooltip(self, LEFT, "Toggle whether to include |H1:item:147300:2:1:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0:0|h|h in the tally")
-                                    </OnMouseEnter>
-                                    <OnMouseExit>ZO_Tooltips_HideTextTooltip()</OnMouseExit>
-                                </Texture>
                                 <Texture name="$(parent)Blossom" textureFile="/art/fx/texture/cherryblossomground_01.dds" tier="HIGH" mouseEnabled="true" movable="false">
                                     <Anchor point="LEFT" relativeTo="$(parent)Pie" relativePoint="RIGHT"/>
                                     <Dimensions x="20" y="20"/>
                                     <OnMouseUp>Mudballed.OnButtonClicked("blossom", false)</OnMouseUp>
                                     <OnMouseEnter>
                                         ZO_Tooltips_ShowTextTooltip(self, LEFT, "Toggle whether to include |H1:collectible:1108|h|h in the tally")
+                                    </OnMouseEnter>
+                                    <OnMouseExit>ZO_Tooltips_HideTextTooltip()</OnMouseExit>
+                                </Texture>
+                                <Texture name="$(parent)Crow" textureFile="/esoui/art/icons/achievement_update16_016.dds" tier="HIGH" mouseEnabled="true" movable="false">
+                                    <Anchor point="LEFT" relativeTo="$(parent)Blossom" relativePoint="RIGHT"/>
+                                    <Dimensions x="20" y="20"/>
+                                    <OnMouseUp>Mudballed.OnButtonClicked("crow", false)</OnMouseUp>
+                                    <OnMouseEnter>
+                                        ZO_Tooltips_ShowTextTooltip(self, LEFT, "Toggle whether to include |H1:collectible:1385|h|h in the tally")
                                     </OnMouseEnter>
                                     <OnMouseExit>ZO_Tooltips_HideTextTooltip()</OnMouseExit>
                                 </Texture>

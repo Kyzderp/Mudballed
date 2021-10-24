@@ -1,8 +1,6 @@
 Mudballed = Mudballed or {}
 local Mud = Mudballed
 
-local BALL_TYPE = Mud.BALL_TYPE
-
 ---------------------------------------------------------------------
 -- lazy, copied from https://stackoverflow.com/questions/15706270/sort-a-table-in-lua
 local function spairs(t, order)
@@ -33,6 +31,7 @@ local ballNames = {
     "snowball",
     "pie",
     "blossom",
+    "crow",
 }
 
 local truncatedText = {} -- Cache to avoid calculating a lot
@@ -139,6 +138,14 @@ local function UpdateButtons(control, allTally, sessionTally, options, titleWord
         control:GetNamedChild("ButtonsBlossom"):SetColor(0.5, 0.5, 0.5, 1)
     end
 
+    if (options.crow) then
+        control:GetNamedChild("ButtonsCrow"):SetDesaturation(0)
+        control:GetNamedChild("ButtonsCrow"):SetColor(1, 1, 1, 1)
+    else
+        control:GetNamedChild("ButtonsCrow"):SetDesaturation(1)
+        control:GetNamedChild("ButtonsCrow"):SetColor(0.5, 0.5, 0.5, 1)
+    end
+
     control:GetNamedChild("ButtonsAllSession"):SetTexture(options.all and "/esoui/art/buttons/radiobuttondown.dds" or "/esoui/art/buttons/radiobuttonup.dds")
 
     UpdateTally(control, options.all and allTally or sessionTally, options, (options.all and "All-Time " or "Session ") .. titleWord)
@@ -150,9 +157,6 @@ local function UpdateAllTallies()
 
     UpdateButtons(MudballedTargetTally, Mud.savedOptions.targetTally, Mud.sessionTargetTally, Mud.savedOptions.targetDisplay, "Attackers")
     MudballedTargetTally:SetHidden(not Mud.savedOptions.targetDisplay.show)
-
-    MudballedSourceTally:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, Mud.savedOptions.sourceDisplay.x, Mud.savedOptions.sourceDisplay.y)
-    MudballedTargetTally:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, Mud.savedOptions.targetDisplay.x, Mud.savedOptions.targetDisplay.y)
 end
 Mud.UpdateAllTallies = UpdateAllTallies
 
@@ -167,5 +171,10 @@ function Mud.OnButtonClicked(buttonType, isSource)
 end
 
 function Mud.InitializeDisplay()
+    MudballedSourceTally:ClearAnchors()
+    MudballedSourceTally:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, Mud.savedOptions.sourceDisplay.x, Mud.savedOptions.sourceDisplay.y)
+    MudballedTargetTally:ClearAnchors()
+    MudballedTargetTally:SetAnchor(TOPLEFT, GuiRoot, TOPLEFT, Mud.savedOptions.targetDisplay.x, Mud.savedOptions.targetDisplay.y)
+
     UpdateAllTallies()
 end

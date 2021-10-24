@@ -32,6 +32,7 @@ local typeToHeader = {
     snowball = "snowballed",
     pie = "pied",
     blossom = "blessed",
+    crow = "pecked",
 }
 
 -- self chat output limit seems to be 350
@@ -82,7 +83,7 @@ local function OnCommand(argString, mainCmd, isSource, tally, sessionTally)
             Mud.msg(MakeHeader(isSource, args[1], true))
             CHAT_SYSTEM:AddMessage("|cFFFFFF" .. FormatTally(subTally, args[1]) .. "|r")
         else
-            Mud.msg("Must specify type: mudball||snowball||pie||blossom")
+            Mud.msg("Must specify type: mudball||snowball||pie||blossom||crow")
         end
     elseif (length == 2 and args[2] == "all") then
         local subTally = tally[args[1]]
@@ -90,10 +91,10 @@ local function OnCommand(argString, mainCmd, isSource, tally, sessionTally)
             Mud.msg(MakeHeader(isSource, args[1], false))
             CHAT_SYSTEM:AddMessage("|cFFFFFF" .. FormatTally(subTally, args[1]) .. "|r")
         else
-            Mud.msg("Must specify type: mudball||snowball||pie||blossom")
+            Mud.msg("Must specify type: mudball||snowball||pie||blossom||crow")
         end
     else
-        Mud.msg("Usage: " .. mainCmd .. " <mudball||snowball||pie||blossom> [all||session]")
+        Mud.msg("Usage: " .. mainCmd .. " <mudball||snowball||pie||blossom||crow> [all||session]")
     end
 end
 

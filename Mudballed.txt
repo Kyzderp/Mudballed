@@ -1,6 +1,6 @@
 ## Title: Mudballed
 ## Author: Kyzeragon
-## Version: 0.0.1
+## Version: 1.0.0
 ## APIVersion: 101031
 ## DependsOn: LibAddonMenu-2.0>=31
 

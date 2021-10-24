@@ -4,44 +4,38 @@ local Mud = Mudballed
 ---------------------------------------------------------------------
 local charName = zo_strformat("<<1>>", GetUnitName("player"))
 
-local BALL_TYPE = {
-    MUDBALL = 1,
-    SNOWBALL = 2,
-    PIE = 3,
-    BLOSSOM = 4,
-}
-Mud.BALL_TYPE = BALL_TYPE
-
 -- murderous strike |H1:collectible:1385|h|h
 local BALL_DATA = {
-    [BALL_TYPE.MUDBALL] = {
+    mudball = {
         id = 86774, -- Mudball
-        name = "mudball",
         npcFormat = "You mudballed |cFFFFFF%s|cAAAAAA! NPCs don't count for tally though ;)",
         sourceFormat = "You mudballed |cFFFFFF%s|cAAAAAA! You've mudballed them %d times in total.",
         targetFormat = "|cFFFFFF%s |cAAAAAAmudballed you! They've mudballed you %d times in total.",
     },
-    [BALL_TYPE.SNOWBALL] = {
+    snowball = {
         id = 129540, -- Memento Throw Snowball
-        name = "snowball",
         npcFormat = "You pelted |cFFFFFF%s |cAAAAAAwith a snowball! NPCs don't count for tally though ;)",
         sourceFormat = "You pelted |cFFFFFF%s |cAAAAAAwith a snowball! You've snowballed them %d times in total.",
         targetFormat = "|cFFFFFF%s |cAAAAAApelted you with a snowball! They've snowballed you %d times in total.",
     },
-    [BALL_TYPE.PIE] = {
+    pie = {
         id = 116879, -- Alliance Pie
-        name = "pie",
         npcFormat = "You pied |cFFFFFF%s|cAAAAAA! NPCs don't count for tally though ;)",
         sourceFormat = "You pied |cFFFFFF%s|cAAAAAA! You've pied them %d times in total.",
         targetFormat = "|cFFFFFF%s |cAAAAAApied you! They've pied you %d times in total.",
     },
-    [BALL_TYPE.BLOSSOM] = {
+    blossom = {
         id = 89372, -- Pelted!
-        name = "blossom",
         npcFormat = "You showered |cFFFFFF%s |cAAAAAAwith cherry blossoms! NPCs don't count for tally though ;)",
         sourceFormat = "You showered |cFFFFFF%s |cAAAAAAwith cherry blossoms! You've blessed them %d times in total.",
         targetFormat = "|cFFFFFF%s |cAAAAAAshowered you with cherry blossoms! They've blessed you %d times in total.",
     },
+    crow = {
+        id = 98378, -- Murderous Strike
+        npcFormat = "You attacked |cFFFFFF%s |cAAAAAAwith crows! NPCs don't count for tally though ;)",
+        sourceFormat = "You attacked |cFFFFFF%s |cAAAAAAwith crows! You've pecked them %d times in total.",
+        targetFormat = "|cFFFFFF%s |cAAAAAAattacked you with crows! They've pecked you %d times in total.",
+    }
 }
 
 
@@ -68,16 +62,16 @@ local function OnBalled(ballType, sourceName, sourceType, targetName, targetType
         if (targetType == COMBAT_UNIT_TYPE_NONE) then Mud.msg(string.format(ballData.npcFormat, targetName)) return end
         format = ballData.sourceFormat
         if (targetType == COMBAT_UNIT_TYPE_NONE) then return end
-        tally = Mud.savedOptions.sourceTally[ballData.name]
-        sessionTally = Mud.sessionSourceTally[ballData.name]
+        tally = Mud.savedOptions.sourceTally[ballType]
+        sessionTally = Mud.sessionSourceTally[ballType]
         otherPlayer = targetName
 
     --------------------
     -- Someone balled us, we are the target
     elseif (targetName == charName) then
         format = ballData.targetFormat
-        tally = Mud.savedOptions.targetTally[ballData.name]
-        sessionTally = Mud.sessionTargetTally[ballData.name]
+        tally = Mud.savedOptions.targetTally[ballType]
+        sessionTally = Mud.sessionTargetTally[ballType]
         otherPlayer = sourceName
 
     --------------------
@@ -112,12 +106,12 @@ end
 -- EVENT_COMBAT_EVENT (number eventCode, number ActionResult result, boolean isError, string abilityName, number abilityGraphic, number ActionSlotType abilityActionSlotType, string sourceName, number CombatUnitType sourceType, string targetName, number CombatUnitType targetType, number hitValue, number CombatMechanicType powerType, number DamageType damageType, boolean log, number sourceUnitId, number targetUnitId, number abilityId, number overflow)
 function Mud.InitializeCore()
     for ballType, data in pairs(BALL_DATA) do
-        EVENT_MANAGER:RegisterForEvent(Mud.name .. data.name, EVENT_COMBAT_EVENT, function(_, _, _, _, _, _, sourceName, sourceType, targetName, targetType, hitValue)
+        EVENT_MANAGER:RegisterForEvent(Mud.name .. ballType, EVENT_COMBAT_EVENT, function(_, _, _, _, _, _, sourceName, sourceType, targetName, targetType, hitValue)
                 if (hitValue == 1) then
                     OnBalled(ballType, sourceName, sourceType, targetName, targetType)
                 end
             end)
-        EVENT_MANAGER:AddFilterForEvent(Mud.name .. data.name, EVENT_COMBAT_EVENT, REGISTER_FILTER_ABILITY_ID, data.id)
-        EVENT_MANAGER:AddFilterForEvent(Mud.name .. data.name, EVENT_COMBAT_EVENT, REGISTER_FILTER_COMBAT_RESULT, ACTION_RESULT_EFFECT_GAINED)
+        EVENT_MANAGER:AddFilterForEvent(Mud.name .. ballType, EVENT_COMBAT_EVENT, REGISTER_FILTER_ABILITY_ID, data.id)
+        EVENT_MANAGER:AddFilterForEvent(Mud.name .. ballType, EVENT_COMBAT_EVENT, REGISTER_FILTER_COMBAT_RESULT, ACTION_RESULT_EFFECT_GAINED)
     end
 end
