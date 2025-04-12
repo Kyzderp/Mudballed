@@ -112,7 +112,7 @@
                             <Anchor point="TOPRIGHT" relativeTo="$(parent)Header" relativePoint="BOTTOMRIGHT"/>
                         </Control>
                         <Label name="$(parent)Count" font="ZoFontGame" color="FFFFFF" text="420&#13;&#10;3&#13;&#10;1&#13;&#10;1" horizontalAlignment="RIGHT" wrapMode="TRUNCATE">
-                            <Dimensions x="24" y="60"/>
+                            <Dimensions x="80" y="60"/>
                             <OnInitialized>
                                 self:SetParent(GetControl("MudballedSourceTallyScrollContainerScrollChild"))
                                 self:SetAnchor(TOPRIGHT, GetControl("MudballedSourceTallyScrollContainerScrollChild"), TOPRIGHT)
@@ -232,7 +232,7 @@
                             <Anchor point="TOPRIGHT" relativeTo="$(parent)Header" relativePoint="BOTTOMRIGHT"/>
                         </Control>
                         <Label name="$(parent)Count" font="ZoFontGame" color="FFFFFF" text="420&#13;&#10;3&#13;&#10;1&#13;&#10;1" horizontalAlignment="RIGHT" wrapMode="TRUNCATE">
-                            <Dimensions x="24" y="60"/>
+                            <Dimensions x="80" y="60"/>
                             <OnInitialized>
                                 self:SetParent(GetControl("MudballedTargetTallyScrollContainerScrollChild"))
                                 self:SetAnchor(TOPRIGHT, GetControl("MudballedTargetTallyScrollContainerScrollChild"), TOPRIGHT)

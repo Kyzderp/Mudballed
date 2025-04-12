@@ -1,7 +1,7 @@
 Mudballed = Mudballed or {}
 local Mud = Mudballed
 Mud.name = "Mudballed"
-Mud.version = "1.0.0"
+Mud.version = "1.0.1"
 
 local defaultOptions = {
     chat = true,
